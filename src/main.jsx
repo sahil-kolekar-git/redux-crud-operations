@@ -34,7 +34,7 @@ const routes = createBrowserRouter([
     element: <PageNotFound />,
   },
   {
-    path: "/post/:id",
+    path: "/post/:postid",
     element: <Post />,
   },
 ]);
