@@ -1,11 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { updatePost } from "../Features/postSlice";
+import { updatePost, updateSearchData } from "../Features/postSlice";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   let { data } = useSelector((state) => state.posts);
   let dispatch = useDispatch();
+  let [searchData, setSearchData] = useState("");
 
+  useEffect(() => {
+    dispatch(updateSearchData(searchData));
+  }, [searchData]);
   return (
     <nav className="w-[calc(100vw-15px)] flex justify-between items-center px-2.5 py-1.5 bg-violet-500 text-white">
       <div className="flex space-x-10 items-center">
@@ -18,9 +23,7 @@ const Navbar = () => {
       <div className="flex space-x-1 items-center">
         <input
           onChange={(e) => {
-            console.log(e.target.value);
-
-            dispatch(updatePost(e.target.value));
+            setSearchData(e.target.value);
           }}
           type="text"
           placeholder="search here"

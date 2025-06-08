@@ -61,8 +61,15 @@ export const postSlice = createSlice({
     isLoading: false,
     isError: false,
     data: [],
+    searchData: "",
   },
-  reducers: {},
+  reducers: {
+    updateSearchData: (state, action) => {
+      console.log(action);
+
+      state.searchData = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchPost.pending, (state, action) => {
       state.isLoading = true;
@@ -111,3 +118,4 @@ export const postSlice = createSlice({
 });
 
 export default postSlice.reducer;
+export const { updateSearchData } = postSlice.actions;
